@@ -66,16 +66,12 @@ add_executable( cPart
 		linear_DD_scalar_prod.cpp
 		linear_fill_matrices.cpp
 		linear_vect_to_field.cpp
+		linear_ps_equation.cpp
 		number.cpp
 		fields.cpp
-		linear_ps_equation.cpp
 		lloyds.cpp
 # choice of main file:
-# 		pParticles_other.cpp	
-#		pParticles_dG.cpp
-#		pParticles_w.cpp
-#		pParticles_p.cpp
-		pParticles_s_p.cpp
+		cParticles_p_s.cpp
 )
 
 add_to_cached_list( CGAL_EXECUTABLE_TARGETS pPart )

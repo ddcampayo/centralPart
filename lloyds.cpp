@@ -1,4 +1,4 @@
-#include"pParticles.h"
+#include"cParticles.h"
 #include"simu.h"
 #include"data_kept.h"
 
@@ -10,12 +10,6 @@ FT lloyds(Triangulation& T) {
 
   cout << "Lloyds algorithm ... " << endl ;
   
-  //  copy_weights( T );
-
-  // volumes( T );
-
-  //  copy_weights( T );
-
   vector<data_kept> prev;
 
   FT dd2=0;

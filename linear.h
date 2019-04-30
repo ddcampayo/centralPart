@@ -1,7 +1,7 @@
 #ifndef _LINEAR_H_
 #define _LINEAR_H_
 
-#include"pParticles.h"
+#include"cParticles.h"
 
 #ifdef CHOLMOD
  #include <Eigen/CholmodSupport>

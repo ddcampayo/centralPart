@@ -3,7 +3,7 @@
 // Pressure is used in order to enforce incompressibility
 // An additional field, s, is used to enforce const moments of inertia
 
-#include"pParticles.h"
+#include"cParticles.h"
 #include"linear.h"
 #include"simu.h"
 
@@ -11,6 +11,7 @@ sim_data simu;
 
 int main() {
 
+  // TODO: read parameter file
   // TODO: read better from parameter file
   
   int init_max_iters; cin >> init_max_iters; // = 40;
@@ -20,6 +21,7 @@ int main() {
   FT  disp_tol; cin >> disp_tol; //  = 1e-6;
 
   int s_iters; cin >> s_iters; //= 10;
+  int p_iters; cin >> p_iters; //= 10;
 
   FT total_time =  1/( 2 * 3.14 * 0.2) ;
 
@@ -47,18 +49,12 @@ int main() {
   
     volumes( T ); 
 
-    //    copy_weights( T ) ;
-
-    //    algebra.solve_for_weights();
-
     FT dd = lloyds( T ) ;
 
     cout << " init loop , iter " << init_iter << " dd = " << dd << endl;
     if( dd < init_tol2) break;
 
   }
-
-  //  copy_weights( T ) ;
 
   cout << "Init loop converged in " << init_iter << " steps " << endl;
   
@@ -79,8 +75,6 @@ int main() {
   // whole step
   FT dt2 = dt  ;
 
-  //  algebra.solve_for_weights();
-
   draw( T , particle_file     );
 
   draw_diagram( T , diagram_file );
@@ -94,39 +88,25 @@ int main() {
 
     FT displ;
 
-    int in_iter = 1 , s_it = 1 , p_it= 1;
+    int in_iter = 1 , s_it = 1;
     
-    volumes( T ); 
-    
-    backup( T );
-
-    algebra.u_star( );
-    
-    displ = move( T , dt2 , d0 );
-
-    algebra.reset_s();
-    algebra.reset_p();
-
     for ( ; in_iter <= inner_max_iters ; in_iter++) {
 
       //   moment of inertia (s)   iteration
 
-      // volumes( T ); 
+      volumes( T ); 
 
-      // backup( T );
+      backup( T );
 
-      // algebra.u_star( );
-    
-      // displ = move( T , dt2 , d0 );
-
-      // algebra.reset_s();
-
-      s_it = 1;
-      
       algebra.u_star( );
+    
+      s_it = 1;
+     
+      displ = move( T , dt2 , d0 );
+
+      algebra.reset_s();
 
       for ( ; s_it <= s_iters ; s_it++) {
-
 	volumes( T ); 
 
 	algebra.fill_matrices();
@@ -138,23 +118,30 @@ int main() {
 	  algebra.u_add_grads( dt / 2 );
 	}  else 
 	  {
-	    algebra.u_add_grads( dt );
+	    algebra.u_add_grads( dt2 );
 	  }
 
 	displ = move( T , dt2 , d0 );
 
 	cout
 	  << "********" << endl
-	  << "S Iter  " << s_it
+	  << "p-s Iter  " << s_it
 	  << " . Moved from previous (rel.): " << displ <<
 	  " ; from original (rel.): " << d0
 	  << endl ;
 
-	if( displ < disp_tol ) break;
+	//      if( displ < disp_tol ) break;
 
       }
 
-      //      displ = move( T , dt2 , d0 );
+      volumes( T ); 
+
+ 
+      if( displ < disp_tol ) break;
+
+
+    }
+    ///////////// end   p iter
 
     
     cout
@@ -175,7 +162,7 @@ int main() {
       << " iters = " << in_iter
       << " L2_vel =  " << L2_vel_Gresho(T)
       << endl ;
-    }
+
   } while ( simu.time() < total_time );
 
   log_file.close();

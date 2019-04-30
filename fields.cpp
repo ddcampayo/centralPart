@@ -1,4 +1,4 @@
-#include"pParticles.h"
+#include"cParticles.h"
 #include"simu.h"
 
 const double pi = M_PI;

@@ -123,6 +123,33 @@ cPart/fast:
 	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/build
 .PHONY : cPart/fast
 
+cParticles_p_s.o: cParticles_p_s.cpp.o
+
+.PHONY : cParticles_p_s.o
+
+# target to build an object file
+cParticles_p_s.cpp.o:
+	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/cParticles_p_s.cpp.o
+.PHONY : cParticles_p_s.cpp.o
+
+cParticles_p_s.i: cParticles_p_s.cpp.i
+
+.PHONY : cParticles_p_s.i
+
+# target to preprocess a source file
+cParticles_p_s.cpp.i:
+	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/cParticles_p_s.cpp.i
+.PHONY : cParticles_p_s.cpp.i
+
+cParticles_p_s.s: cParticles_p_s.cpp.s
+
+.PHONY : cParticles_p_s.s
+
+# target to generate assembly for a file
+cParticles_p_s.cpp.s:
+	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/cParticles_p_s.cpp.s
+.PHONY : cParticles_p_s.cpp.s
+
 create.o: create.cpp.o
 
 .PHONY : create.o
@@ -420,33 +447,6 @@ number.cpp.s:
 	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/number.cpp.s
 .PHONY : number.cpp.s
 
-pParticles_s_p.o: pParticles_s_p.cpp.o
-
-.PHONY : pParticles_s_p.o
-
-# target to build an object file
-pParticles_s_p.cpp.o:
-	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/pParticles_s_p.cpp.o
-.PHONY : pParticles_s_p.cpp.o
-
-pParticles_s_p.i: pParticles_s_p.cpp.i
-
-.PHONY : pParticles_s_p.i
-
-# target to preprocess a source file
-pParticles_s_p.cpp.i:
-	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/pParticles_s_p.cpp.i
-.PHONY : pParticles_s_p.cpp.i
-
-pParticles_s_p.s: pParticles_s_p.cpp.s
-
-.PHONY : pParticles_s_p.s
-
-# target to generate assembly for a file
-pParticles_s_p.cpp.s:
-	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/pParticles_s_p.cpp.s
-.PHONY : pParticles_s_p.cpp.s
-
 volumes.o: volumes.cpp.o
 
 .PHONY : volumes.o
@@ -483,6 +483,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... cPart"
 	@echo "... edit_cache"
+	@echo "... cParticles_p_s.o"
+	@echo "... cParticles_p_s.i"
+	@echo "... cParticles_p_s.s"
 	@echo "... create.o"
 	@echo "... create.i"
 	@echo "... create.s"
@@ -516,9 +519,6 @@ help:
 	@echo "... number.o"
 	@echo "... number.i"
 	@echo "... number.s"
-	@echo "... pParticles_s_p.o"
-	@echo "... pParticles_s_p.i"
-	@echo "... pParticles_s_p.s"
 	@echo "... volumes.o"
 	@echo "... volumes.i"
 	@echo "... volumes.s"

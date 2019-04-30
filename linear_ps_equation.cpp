@@ -47,12 +47,13 @@ void linear::ps_equation(const FT dt ) {
        << " rel DI std dev: " << sqrt( DI_sigma / I_mean )
        << endl;
 
-  VectorXd DvolDI;
+  int N = vol0.size(); 
+  
+  VectorXd DvolDI( 2*N );
   DvolDI << Dvol , DI ;
- 
+
   VectorXd DpDs  =  DDMM_solver.solve( DvolDI );
 
-  int N = vol0.size(); 
   VectorXd Dp = DpDs.head( N );
   VectorXd Ds = DpDs.tail( N );
   
@@ -95,14 +96,12 @@ void linear::u_add_grads( const FT dt ) {
   FT ddt = dt;
 //  if( dt < 1e-10 ) ddt = 1;  // for debugging, mainly
 
-  U_x = Ustar_x.array() - ddt * ( gradPx.array() + gradsx.array() ) / vol.array()  ;
-  U_y = Ustar_y.array() - ddt * ( gradPy.array() + gradsy.array() ) / vol.array() ;
+  VectorXd gradx = gradPx + gradsx ;
+  VectorXd grady = gradPy + gradsy ;
   
+  U_x = Ustar_x.array() - ddt * gradx.array() / vol.array()  ;
+  U_y = Ustar_y.array() - ddt * grady.array() / vol.array() ;
+
   vctrs_to_vfield( U_x, U_y , vfield_list::U );
 
-
-
-
-
-  
 }

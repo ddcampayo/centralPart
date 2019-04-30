@@ -37,25 +37,25 @@ VectorXd linear::DD_scalar_vfield(const vfield_list::take from )
 // NOTE: this is the "gradient" (but for a 1/V factor)
 // it features a minus sign, and transposition !!
 void linear::DD_times_sfield(const sfield_list::take from ,
-			     VectorXd& Dx,VectorXd& Dy)
+			     VectorXd& vx,VectorXd& vy)
 {
 
   VectorXd p = field_to_vctr( from );
 
-  Dx = -Dx.transpose() * p;
-  Dy = -Dy.transpose() * p;
+  vx = -Dx.transpose() * p;
+  vy = -Dy.transpose() * p;
 
   return;
 }
 
 void linear::MM_times_sfield(const sfield_list::take from ,
-			     VectorXd& Dx,VectorXd& Dy)
+			     VectorXd& vx,VectorXd& vy)
 {
 
   VectorXd s = field_to_vctr( from );
 
-  Dx = -Mx.transpose() * s;
-  Dy = -My.transpose() * s;
+  vx = -Mx.transpose() * s;
+  vy = -My.transpose() * s;
 
   return;
 }
