@@ -1,8 +1,7 @@
 # Created by the script cgal_create_CMakeLists
 # This is the CMake script for compiling a set of CGAL applications.
 
-project( pPart )
-
+project( cPart )
 
 cmake_minimum_required(VERSION 2.8.11)
 
@@ -85,5 +84,5 @@ add_executable( cPart
 add_to_cached_list( CGAL_EXECUTABLE_TARGETS pPart )
 
 # Link the executable to CGAL and third-party libraries
-target_link_libraries(pPart   ${CGAL_LIBRARIES} ${CGAL_3RD_PARTY_LIBRARIES} )
+target_link_libraries(cPart   ${CGAL_LIBRARIES} ${CGAL_3RD_PARTY_LIBRARIES} )
 
