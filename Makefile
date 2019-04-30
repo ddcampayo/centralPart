@@ -258,113 +258,59 @@ linear_aux.cpp.s:
 	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/linear_aux.cpp.s
 .PHONY : linear_aux.cpp.s
 
-linear_fill_Delta_DD.o: linear_fill_Delta_DD.cpp.o
+linear_fill_matrices.o: linear_fill_matrices.cpp.o
 
-.PHONY : linear_fill_Delta_DD.o
-
-# target to build an object file
-linear_fill_Delta_DD.cpp.o:
-	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/linear_fill_Delta_DD.cpp.o
-.PHONY : linear_fill_Delta_DD.cpp.o
-
-linear_fill_Delta_DD.i: linear_fill_Delta_DD.cpp.i
-
-.PHONY : linear_fill_Delta_DD.i
-
-# target to preprocess a source file
-linear_fill_Delta_DD.cpp.i:
-	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/linear_fill_Delta_DD.cpp.i
-.PHONY : linear_fill_Delta_DD.cpp.i
-
-linear_fill_Delta_DD.s: linear_fill_Delta_DD.cpp.s
-
-.PHONY : linear_fill_Delta_DD.s
-
-# target to generate assembly for a file
-linear_fill_Delta_DD.cpp.s:
-	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/linear_fill_Delta_DD.cpp.s
-.PHONY : linear_fill_Delta_DD.cpp.s
-
-linear_p_equation.o: linear_p_equation.cpp.o
-
-.PHONY : linear_p_equation.o
+.PHONY : linear_fill_matrices.o
 
 # target to build an object file
-linear_p_equation.cpp.o:
-	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/linear_p_equation.cpp.o
-.PHONY : linear_p_equation.cpp.o
+linear_fill_matrices.cpp.o:
+	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/linear_fill_matrices.cpp.o
+.PHONY : linear_fill_matrices.cpp.o
 
-linear_p_equation.i: linear_p_equation.cpp.i
+linear_fill_matrices.i: linear_fill_matrices.cpp.i
 
-.PHONY : linear_p_equation.i
+.PHONY : linear_fill_matrices.i
 
 # target to preprocess a source file
-linear_p_equation.cpp.i:
-	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/linear_p_equation.cpp.i
-.PHONY : linear_p_equation.cpp.i
+linear_fill_matrices.cpp.i:
+	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/linear_fill_matrices.cpp.i
+.PHONY : linear_fill_matrices.cpp.i
 
-linear_p_equation.s: linear_p_equation.cpp.s
+linear_fill_matrices.s: linear_fill_matrices.cpp.s
 
-.PHONY : linear_p_equation.s
+.PHONY : linear_fill_matrices.s
 
 # target to generate assembly for a file
-linear_p_equation.cpp.s:
-	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/linear_p_equation.cpp.s
-.PHONY : linear_p_equation.cpp.s
+linear_fill_matrices.cpp.s:
+	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/linear_fill_matrices.cpp.s
+.PHONY : linear_fill_matrices.cpp.s
 
-linear_s_equation.o: linear_s_equation.cpp.o
+linear_ps_equation.o: linear_ps_equation.cpp.o
 
-.PHONY : linear_s_equation.o
+.PHONY : linear_ps_equation.o
 
 # target to build an object file
-linear_s_equation.cpp.o:
-	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/linear_s_equation.cpp.o
-.PHONY : linear_s_equation.cpp.o
+linear_ps_equation.cpp.o:
+	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/linear_ps_equation.cpp.o
+.PHONY : linear_ps_equation.cpp.o
 
-linear_s_equation.i: linear_s_equation.cpp.i
+linear_ps_equation.i: linear_ps_equation.cpp.i
 
-.PHONY : linear_s_equation.i
-
-# target to preprocess a source file
-linear_s_equation.cpp.i:
-	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/linear_s_equation.cpp.i
-.PHONY : linear_s_equation.cpp.i
-
-linear_s_equation.s: linear_s_equation.cpp.s
-
-.PHONY : linear_s_equation.s
-
-# target to generate assembly for a file
-linear_s_equation.cpp.s:
-	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/linear_s_equation.cpp.s
-.PHONY : linear_s_equation.cpp.s
-
-linear_solve_for_weights.o: linear_solve_for_weights.cpp.o
-
-.PHONY : linear_solve_for_weights.o
-
-# target to build an object file
-linear_solve_for_weights.cpp.o:
-	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/linear_solve_for_weights.cpp.o
-.PHONY : linear_solve_for_weights.cpp.o
-
-linear_solve_for_weights.i: linear_solve_for_weights.cpp.i
-
-.PHONY : linear_solve_for_weights.i
+.PHONY : linear_ps_equation.i
 
 # target to preprocess a source file
-linear_solve_for_weights.cpp.i:
-	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/linear_solve_for_weights.cpp.i
-.PHONY : linear_solve_for_weights.cpp.i
+linear_ps_equation.cpp.i:
+	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/linear_ps_equation.cpp.i
+.PHONY : linear_ps_equation.cpp.i
 
-linear_solve_for_weights.s: linear_solve_for_weights.cpp.s
+linear_ps_equation.s: linear_ps_equation.cpp.s
 
-.PHONY : linear_solve_for_weights.s
+.PHONY : linear_ps_equation.s
 
 # target to generate assembly for a file
-linear_solve_for_weights.cpp.s:
-	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/linear_solve_for_weights.cpp.s
-.PHONY : linear_solve_for_weights.cpp.s
+linear_ps_equation.cpp.s:
+	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/linear_ps_equation.cpp.s
+.PHONY : linear_ps_equation.cpp.s
 
 linear_vect_to_field.o: linear_vect_to_field.cpp.o
 
@@ -392,33 +338,6 @@ linear_vect_to_field.s: linear_vect_to_field.cpp.s
 linear_vect_to_field.cpp.s:
 	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/linear_vect_to_field.cpp.s
 .PHONY : linear_vect_to_field.cpp.s
-
-linear_w_equation.o: linear_w_equation.cpp.o
-
-.PHONY : linear_w_equation.o
-
-# target to build an object file
-linear_w_equation.cpp.o:
-	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/linear_w_equation.cpp.o
-.PHONY : linear_w_equation.cpp.o
-
-linear_w_equation.i: linear_w_equation.cpp.i
-
-.PHONY : linear_w_equation.i
-
-# target to preprocess a source file
-linear_w_equation.cpp.i:
-	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/linear_w_equation.cpp.i
-.PHONY : linear_w_equation.cpp.i
-
-linear_w_equation.s: linear_w_equation.cpp.s
-
-.PHONY : linear_w_equation.s
-
-# target to generate assembly for a file
-linear_w_equation.cpp.s:
-	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/linear_w_equation.cpp.s
-.PHONY : linear_w_equation.cpp.s
 
 lloyds.o: lloyds.cpp.o
 
@@ -579,24 +498,15 @@ help:
 	@echo "... linear_aux.o"
 	@echo "... linear_aux.i"
 	@echo "... linear_aux.s"
-	@echo "... linear_fill_Delta_DD.o"
-	@echo "... linear_fill_Delta_DD.i"
-	@echo "... linear_fill_Delta_DD.s"
-	@echo "... linear_p_equation.o"
-	@echo "... linear_p_equation.i"
-	@echo "... linear_p_equation.s"
-	@echo "... linear_s_equation.o"
-	@echo "... linear_s_equation.i"
-	@echo "... linear_s_equation.s"
-	@echo "... linear_solve_for_weights.o"
-	@echo "... linear_solve_for_weights.i"
-	@echo "... linear_solve_for_weights.s"
+	@echo "... linear_fill_matrices.o"
+	@echo "... linear_fill_matrices.i"
+	@echo "... linear_fill_matrices.s"
+	@echo "... linear_ps_equation.o"
+	@echo "... linear_ps_equation.i"
+	@echo "... linear_ps_equation.s"
 	@echo "... linear_vect_to_field.o"
 	@echo "... linear_vect_to_field.i"
 	@echo "... linear_vect_to_field.s"
-	@echo "... linear_w_equation.o"
-	@echo "... linear_w_equation.i"
-	@echo "... linear_w_equation.s"
 	@echo "... lloyds.o"
 	@echo "... lloyds.i"
 	@echo "... lloyds.s"

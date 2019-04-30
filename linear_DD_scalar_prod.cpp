@@ -8,7 +8,7 @@ void linear::DD_scalar_vfield(const vfield_list::take from , const sfield_list::
   VectorXd vx, vy;
   vfield_to_vctrs( from , vx, vy );
 
-  VectorXd div = DDx * vx + DDy*vy;
+  VectorXd div = Dx * vx + Dy*vy;
 
   vctr_to_field( div , to );
 
@@ -25,12 +25,12 @@ VectorXd linear::DD_scalar_vfield(const vfield_list::take from )
   // cout << "vx cols " << vx.cols() << endl;
   // cout << "vx rows " << vx.rows() << endl;
 
-  // cout << DDx << endl;
+  // cout << Dx << endl;
   // cout << "vx " << endl;
   // cout << vx << endl;
 
 
-  return DDx * vx  + DDy * vy ;
+  return Dx * vx  + Dy * vy ;
 }
 
 
@@ -42,8 +42,8 @@ void linear::DD_times_sfield(const sfield_list::take from ,
 
   VectorXd p = field_to_vctr( from );
 
-  Dx = -DDx.transpose() * p;
-  Dy = -DDy.transpose() * p;
+  Dx = -Dx.transpose() * p;
+  Dy = -Dy.transpose() * p;
 
   return;
 }
@@ -54,8 +54,8 @@ void linear::MM_times_sfield(const sfield_list::take from ,
 
   VectorXd s = field_to_vctr( from );
 
-  Dx = -MMx.transpose() * s;
-  Dy = -MMy.transpose() * s;
+  Dx = -Mx.transpose() * s;
+  Dy = -My.transpose() * s;
 
   return;
 }

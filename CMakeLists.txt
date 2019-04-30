@@ -60,18 +60,15 @@ include_directories( ${CHOLMOD_INCLUDES})
 add_executable( cPart
 		create.cpp
 		linear_aux.cpp
-		linear_solve_for_weights.cpp
 		move.cpp
 		volumes.cpp
 		draw.cpp
 		linear_DD_scalar_prod.cpp
-		linear_fill_Delta_DD.cpp
+		linear_fill_matrices.cpp
 		linear_vect_to_field.cpp
 		number.cpp
 		fields.cpp
-		linear_p_equation.cpp
-		linear_w_equation.cpp
-		linear_s_equation.cpp
+		linear_ps_equation.cpp
 		lloyds.cpp
 # choice of main file:
 # 		pParticles_other.cpp	

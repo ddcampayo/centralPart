@@ -96,35 +96,23 @@ int main() {
 
     int in_iter = 1 , s_it = 1 , p_it= 1;
     
-    volumes( T ); 
-    
-    backup( T );
-
-    algebra.u_star( );
-    
-    displ = move( T , dt2 , d0 );
-
-    algebra.reset_s();
-    algebra.reset_p();
-
     for ( ; in_iter <= inner_max_iters ; in_iter++) {
 
-      //   moment of inertia (s)   iteration
-
-      // volumes( T ); 
-
-      // backup( T );
-
-      // algebra.u_star( );
+      volumes( T ); 
     
-      // displ = move( T , dt2 , d0 );
+      backup( T );
 
-      // algebra.reset_s();
+      algebra.u_star( );
+
+      algebra.u_star( );
+      
+      displ = move( T , dt2 , d0 );
+
+      algebra.reset_s();
+      algebra.reset_p();
 
       s_it = 1;
       
-      algebra.u_star( );
-
       for ( ; s_it <= s_iters ; s_it++) {
 
 	volumes( T ); 
@@ -156,6 +144,7 @@ int main() {
 
       //      displ = move( T , dt2 , d0 );
 
+    }
     
     cout
       << "Whole step  "
@@ -175,7 +164,7 @@ int main() {
       << " iters = " << in_iter
       << " L2_vel =  " << L2_vel_Gresho(T)
       << endl ;
-    }
+
   } while ( simu.time() < total_time );
 
   log_file.close();

@@ -28,18 +28,14 @@ class linear {
  public:  // constructor
  linear(Triangulation& TT) : T(TT) {}
 
-  void fill_Delta();
-  void fill_Delta_DD();
+  void fill_matrices();
 
   void solve_for_weights( );
-  void w_equation( );
-  void p_equation(const FT dt );
-  void s_equation(const FT dt );
+  void ps_equation(const FT dt );
   void u_star( void );
   void reset_p( void );
   void reset_s( void );
-  void u_add_press_grad( const FT dt ) ;
-  void u_add_s_grad( const FT dt ) ;
+  void u_add_grads( const FT dt ) ;
   
   void DD_scalar_vfield(const vfield_list::take from , const sfield_list::take to );  
   VectorXd DD_scalar_vfield(const vfield_list::take from );
@@ -58,12 +54,10 @@ private:
   typedef   SparseMatrix<double>  SpMat;
   typedef Eigen::Triplet<double> triplet;
 
-  SpMat Delta;
-  SpMat DDx, DDy;
-  SpMat LL;
-  SpMat MMx, MMy;
-  SpMat NN;
-  
+  SpMat Dx, Dy;
+  SpMat Mx, My;
+  SpMat DDMM;
+
   VectorXd field_to_vctr(const sfield_list::take sf );
   void vctr_to_field(const VectorXd& vv, const sfield_list::take sf  );
   void vfield_to_vctrs(const vfield_list::take vf , VectorXd& vx, VectorXd& vy ) ;
@@ -73,11 +67,9 @@ private:
 
 #ifdef DIRECT_SOLVER
 #ifdef CHOLMOD
-  Eigen::CholmodSupernodalLLT<SpMat> Delta_solver;
+  Eigen::CholmodSupernodalLLT<SpMat> DDMM_solver;
 #else
-  Eigen::SimplicialLDLT<SpMat> Delta_solver;
-  Eigen::SimplicialLDLT<SpMat> LL_solver;
-  Eigen::SimplicialLDLT<SpMat> NN_solver;
+  Eigen::SimplicialLDLT<SpMat> DDMM_solver;
 #endif
 #else
   Eigen::BiCGSTAB<SpMat> solver_stiffp1;
