@@ -26,7 +26,7 @@ void linear::ps_equation(const FT dt ) {
   //VectorXd Dvol = vol.array() - target_vol_val  ;
 
   VectorXd vol0  = field_to_vctr( sfield_list::vol0 ) ;
-  VectorXd Dvol = vol.array() - vol0.array()  ;
+  VectorXd Dvol = vol - vol0  ;
 
   FT Dvol_sigma =  Dvol.array().square().sum() ; // / FT( vol.size() );
   FT Dvol_mean  =  vol.array().square().sum() ; // / FT( vol.size() );
@@ -38,7 +38,7 @@ void linear::ps_equation(const FT dt ) {
   VectorXd I0  = field_to_vctr( sfield_list::I0 ) ;
   VectorXd I  = field_to_vctr( sfield_list::I ) ;
 
-  VectorXd DI = I.array() - I0.array()  ;
+  VectorXd DI = I - I0 ;
 
   FT DI_sigma =  DI.array().square().sum() ;
   FT I_mean  =  I.array().square().sum() ;
@@ -58,15 +58,15 @@ void linear::ps_equation(const FT dt ) {
   VectorXd Ds = DpDs.tail( N );
   
   VectorXd p0  = field_to_vctr( sfield_list::p ) ;
-  
+
   vctr_to_field( p0 + Dp / ( ddt * ddt) , sfield_list::p  ) ;
 
   VectorXd s0  = field_to_vctr( sfield_list::s ) ;
 
   vctr_to_field( s0 + Ds / ( ddt * ddt) , sfield_list::s  ) ;
 
-  
-  //  vctr_to_field( vol , sfield_list::vol0 );
+
+  // no-no:  //  vctr_to_field( vol , sfield_list::vol0 );
 
   return;
 }
@@ -96,8 +96,8 @@ void linear::u_add_grads( const FT dt ) {
   FT ddt = dt;
 //  if( dt < 1e-10 ) ddt = 1;  // for debugging, mainly
 
-  VectorXd gradx = gradPx + gradsx ;
-  VectorXd grady = gradPy + gradsy ;
+  VectorXd gradx = gradPx;// + gradsx ;
+  VectorXd grady = gradPy;// + gradsy ;
   
   U_x = Ustar_x.array() - ddt * gradx.array() / vol.array()  ;
   U_y = Ustar_y.array() - ddt * grady.array() / vol.array() ;

@@ -21,7 +21,6 @@ int main() {
   FT  disp_tol; cin >> disp_tol; //  = 1e-6;
 
   int s_iters; cin >> s_iters; //= 10;
-  int p_iters; cin >> p_iters; //= 10;
 
   FT total_time =  1/( 2 * 3.14 * 0.2) ;
 
@@ -105,6 +104,7 @@ int main() {
       displ = move( T , dt2 , d0 );
 
       algebra.reset_s();
+      algebra.reset_p();
 
       for ( ; s_it <= s_iters ; s_it++) {
 	volumes( T ); 
@@ -114,12 +114,10 @@ int main() {
 	algebra.ps_equation( dt2 );
 
 	// whole step, special 1st time
-	if( simu.current_step() == 1 ){
-	  algebra.u_add_grads( dt / 2 );
-	}  else 
-	  {
-	    algebra.u_add_grads( dt2 );
-	  }
+	FT ddt = dt2;
+	if( simu.current_step() == 1 ) ddt = dt / 2 ;
+
+	algebra.u_add_grads( ddt );
 
 	displ = move( T , dt2 , d0 );
 

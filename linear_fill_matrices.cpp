@@ -148,7 +148,6 @@ void linear::fill_matrices(void){
     di_m_y[ idx ] -= dd.y();
 
   }
-
   
   // Add diagonal terms .-
   
@@ -199,8 +198,7 @@ void linear::fill_matrices(void){
   
   
   // set up solvers .-
- 
-  
+   
   VectorXd vol  = field_to_vctr( sfield_list::vol ) ;
   VectorXd inv_vol  = 1.0 / vol.array() ;
 
@@ -221,8 +219,6 @@ void linear::fill_matrices(void){
     - My * inv_vol.asDiagonal() * Dy.transpose();
 
   // https://stackoverflow.com/questions/28685877/convert-an-eigen-matrix-to-triplet-form-c
-
-
   std::vector<triplet> ddmm ;
   for (int k=0; k < DD.outerSize(); ++k)
     {
@@ -276,10 +272,9 @@ void linear::fill_matrices(void){
 	  ddmm.push_back( triplet( i, j,  val ));
         }
     }
-  
+
   DDMM.resize( 2*N , 2*N );
   DDMM.setFromTriplets(ddmm.begin(), ddmm.end());
-
   
   DDMM_solver.compute( DDMM );
 
