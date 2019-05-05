@@ -60,9 +60,7 @@ int main() {
   set_vels_Gresho( T );
 
   volumes( T ); 
-  algebra.copy( sfield_list::vol,  sfield_list::vol0);
-  algebra.copy( sfield_list::I  ,  sfield_list::I0);
-
+  
   FT d0;
   FT dt=0.001;
 
@@ -87,18 +85,20 @@ int main() {
     simu.next_step();
     simu.advance_time( );
 
-    backup( T );
-
-    algebra.reset_s();
-    algebra.reset_p();
+    FT displ;
 
     int in_iter = 1;// , s_it = 1;
+
+    volumes( T ); 
+
+    backup( T );
 
     algebra.u_star( );
     
     //    s_it = 1;
 
-    FT displ=0;
+    algebra.reset_s();
+    algebra.reset_p();
 
     for ( ; in_iter <= inner_max_iters ; in_iter++) {
 
@@ -106,6 +106,7 @@ int main() {
 
       // whole step, special 1st time
       //      FT ddt = dt2 ;
+
       cout
 	<< "********" << endl
 	<< " p and s Iter  " << in_iter
@@ -123,6 +124,104 @@ int main() {
       
       if( displ < disp_tol ) break;
 
+
+      //      if( simu.current_step() == 1 ) ddt = dt / 2 ;
+      
+      	// optional .- inner ps, p, and s loops
+
+      //           algebra.u_star( );
+
+      // for ( int p_iter=1 ; p_iter <= inner_max_iters ; p_iter++) {
+
+      //   volumes( T ); 
+
+      // 	algebra.fill_matrices();
+
+      // 	algebra.ps_equation( dt2 );
+      // 	algebra.u_add_grad_ps( ddt );
+      // 	//	algebra.u_add_grad_ps( ddt );
+
+      // 	displ = move( T , dt2 , d0 );
+
+      // 	cout
+      // 	  << "********" << endl
+      // 	  << "p - s Iter  " << p_iter
+      // 	  << " . Moved from previous (rel.): " << displ <<
+      // 	  " ; from original (rel.): " << d0
+      // 	  << endl ;
+      
+      // 	if( displ < disp_tol ) break;
+
+      // }
+
+      
+      // algebra.u_star( );
+      
+      // for ( int p_iter=1 ; p_iter <= inner_max_iters ; p_iter++) {
+      // 	volumes( T ); 
+
+      // 	algebra.fill_matrices();
+
+      // 	algebra.p_equation( dt2 );
+      // 	algebra.u_add_grad_p( ddt );
+      // 	//	algebra.u_add_grad_ps( ddt );
+
+      // 	displ = move( T , dt2 , d0 );
+
+      // 	cout
+      // 	  << "********" << endl
+      // 	  << "p Iter  " << p_iter
+      // 	  << " . Moved from previous (rel.): " << displ <<
+      // 	  " ; from original (rel.): " << d0
+      // 	  << endl ;
+      
+      // 	if( displ < disp_tol ) break;
+
+      // }
+
+      // algebra.u_star( );
+      
+      // for ( int p_iter=1 ; p_iter <= inner_max_iters ; p_iter++) {
+      // 	volumes( T ); 
+
+      // 	algebra.fill_matrices();
+
+      // 	algebra.s_equation( dt2 );
+      // 	algebra.u_add_grad_s( ddt );
+      // 	//	algebra.u_add_grad_ps( ddt );
+
+      // 	displ = move( T , dt2 , d0 );
+
+      // 	cout
+      // 	  << "********" << endl
+      // 	  << "s Iter  " << p_iter
+      // 	  << " . Moved from previous (rel.): " << displ <<
+      // 	  " ; from original (rel.): " << d0
+      // 	  << endl ;
+      
+      // 	if( displ < disp_tol ) break;
+
+      // }
+
+      // displ = move( T , dt2 , d0 );
+
+      // volumes( T ); 
+
+      // algebra.fill_matrices();
+
+      // algebra.ps_equation( dt2 );
+      // algebra.u_add_grad_ps( ddt );
+
+      // displ = move( T , dt2 , d0 );
+
+      // cout
+      //  	<< "********" << endl
+      //  	<< "p-s Iter  " << in_iter
+      //  	<< " . Moved from previous (rel.): " << displ <<
+      //  	" ; from original (rel.): " << d0
+      //  	<< endl ;
+      
+      //      if( displ < disp_tol ) break;
 
     }
 

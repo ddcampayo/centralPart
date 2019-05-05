@@ -312,6 +312,33 @@ linear_fill_matrices.cpp.s:
 	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/linear_fill_matrices.cpp.s
 .PHONY : linear_fill_matrices.cpp.s
 
+linear_p_equation.o: linear_p_equation.cpp.o
+
+.PHONY : linear_p_equation.o
+
+# target to build an object file
+linear_p_equation.cpp.o:
+	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/linear_p_equation.cpp.o
+.PHONY : linear_p_equation.cpp.o
+
+linear_p_equation.i: linear_p_equation.cpp.i
+
+.PHONY : linear_p_equation.i
+
+# target to preprocess a source file
+linear_p_equation.cpp.i:
+	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/linear_p_equation.cpp.i
+.PHONY : linear_p_equation.cpp.i
+
+linear_p_equation.s: linear_p_equation.cpp.s
+
+.PHONY : linear_p_equation.s
+
+# target to generate assembly for a file
+linear_p_equation.cpp.s:
+	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/linear_p_equation.cpp.s
+.PHONY : linear_p_equation.cpp.s
+
 linear_ps_equation.o: linear_ps_equation.cpp.o
 
 .PHONY : linear_ps_equation.o
@@ -338,6 +365,33 @@ linear_ps_equation.s: linear_ps_equation.cpp.s
 linear_ps_equation.cpp.s:
 	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/linear_ps_equation.cpp.s
 .PHONY : linear_ps_equation.cpp.s
+
+linear_s_equation.o: linear_s_equation.cpp.o
+
+.PHONY : linear_s_equation.o
+
+# target to build an object file
+linear_s_equation.cpp.o:
+	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/linear_s_equation.cpp.o
+.PHONY : linear_s_equation.cpp.o
+
+linear_s_equation.i: linear_s_equation.cpp.i
+
+.PHONY : linear_s_equation.i
+
+# target to preprocess a source file
+linear_s_equation.cpp.i:
+	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/linear_s_equation.cpp.i
+.PHONY : linear_s_equation.cpp.i
+
+linear_s_equation.s: linear_s_equation.cpp.s
+
+.PHONY : linear_s_equation.s
+
+# target to generate assembly for a file
+linear_s_equation.cpp.s:
+	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/linear_s_equation.cpp.s
+.PHONY : linear_s_equation.cpp.s
 
 linear_vect_to_field.o: linear_vect_to_field.cpp.o
 
@@ -504,9 +558,15 @@ help:
 	@echo "... linear_fill_matrices.o"
 	@echo "... linear_fill_matrices.i"
 	@echo "... linear_fill_matrices.s"
+	@echo "... linear_p_equation.o"
+	@echo "... linear_p_equation.i"
+	@echo "... linear_p_equation.s"
 	@echo "... linear_ps_equation.o"
 	@echo "... linear_ps_equation.i"
 	@echo "... linear_ps_equation.s"
+	@echo "... linear_s_equation.o"
+	@echo "... linear_s_equation.i"
+	@echo "... linear_s_equation.s"
 	@echo "... linear_vect_to_field.o"
 	@echo "... linear_vect_to_field.i"
 	@echo "... linear_vect_to_field.s"

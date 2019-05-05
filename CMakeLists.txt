@@ -67,6 +67,8 @@ add_executable( cPart
 		linear_fill_matrices.cpp
 		linear_vect_to_field.cpp
 		linear_ps_equation.cpp
+		linear_p_equation.cpp
+		linear_s_equation.cpp
 		number.cpp
 		fields.cpp
 		lloyds.cpp
