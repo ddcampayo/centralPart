@@ -52,8 +52,17 @@ void linear::fill_matrices(void){
     Point bij = CGAL::midpoint( Vor_segment->source() , Vor_segment->target() );
 
     // nope!
-    //    Point qj = vj->centroid();
 
+    Point di = pi - vi->centroid() ;
+    Point dj = pj - vj->centroid() ;
+
+    FT di_para = (di * eij) / lij;
+    FT di_perp = di - di_para * eij;
+
+    FT dj_para = - (di * eij) / lij;
+    FT dj_perp = di + di_para * eij;
+
+    
     Vector_2 rr_ij_j = pj - bij;
     Vector_2 rr_ij_i = pi - bij;
 
@@ -247,25 +256,25 @@ void linear::fill_matrices(void){
 	  ddmm.push_back( triplet( i, j,  val ));
     }
   
-//  for (int k=0; k < DM.outerSize(); ++k)
-//    for (SpMat::InnerIterator it(DM,k); it; ++it) {
-//      int i = it.row();
-//      int j = it.col();
+ for (int k=0; k < DM.outerSize(); ++k)
+   for (SpMat::InnerIterator it(DM,k); it; ++it) {
+     int i = it.row();
+     int j = it.col();
 	  
-//      FT val= it.value();
+     FT val= it.value();
  
-//      ddmm.push_back( triplet( i, j + N ,  val ));
-//    }
+     ddmm.push_back( triplet( i, j + N ,  val ));
+   }
 
-//  for (int k=0; k < MD.outerSize(); ++k)
-//    for (SpMat::InnerIterator it(MD,k); it; ++it) {
-//      int i = it.row();
-//      int j = it.col();
+ for (int k=0; k < MD.outerSize(); ++k)
+   for (SpMat::InnerIterator it(MD,k); it; ++it) {
+     int i = it.row();
+     int j = it.col();
 	  
-//      FT val= it.value();
+     FT val= it.value();
  
-//      ddmm.push_back( triplet( i + N , j,  val ));
-//    }
+     ddmm.push_back( triplet( i + N , j,  val ));
+   }
 
   for (int k=0; k < MM.outerSize(); ++k)
     for (SpMat::InnerIterator it(MM,k); it; ++it) {
