@@ -51,17 +51,18 @@ void linear::fill_matrices(void){
     
     Point bij = CGAL::midpoint( Vor_segment->source() , Vor_segment->target() );
 
-    // nope!
 
-    Point di = pi - vi->centroid() ;
-    Point dj = pj - vj->centroid() ;
+    FT voli = vi->vol();
+    FT volj = vj->vol();
+
+    Point di = ( vi->centroid() - pi ) * voli ;
+    Point dj = ( vj->centroid() - pj ) * volj ;
 
     FT di_para = (di * eij) / lij;
     FT di_perp = di - di_para * eij;
 
     FT dj_para = - (di * eij) / lij;
     FT dj_perp = di + di_para * eij;
-
     
     Vector_2 rr_ij_j = pj - bij;
     Vector_2 rr_ij_i = pi - bij;
