@@ -55,36 +55,37 @@ void linear::fill_matrices(void){
     FT voli = vi->vol();
     FT volj = vj->vol();
 
-    Point di = ( vi->centroid() - pi ) * voli ;
-    Point dj = ( vj->centroid() - pj ) * volj ;
+    Vector_2 r_ij_j = pj - bij;
+    Vector_2 r_ij_i = pi - bij;
 
-    FT di_para = (di * eij) / lij;
-    FT di_perp = di - di_para * eij;
+    Vector_2 DDij = Aij / lij * r_ij_j; // ( pj - bij);
+    Vector_2 DDji = Aij / lij * r_ij_i; // ( pi - bij);
 
-    FT dj_para = - (di * eij) / lij;
-    FT dj_perp = di + di_para * eij;
+    Point bi = vi->centroid.val();
+    Point bj = vj->centroid.val();
+
+    Vector_2 di = ( bi - pi ) * voli ;
+    Vector_2 dj = ( bj - pj ) * volj ;
+
+    Vector_2 di_para = ( (di * eij) / lij*lij ) * eij ;
+    Vector_2 di_perp = di - di_para;
+
+    Vector_2 dj_para = ( (dj * eij) / lij*lij ) * eij ;
+    Vector_2 dj_perp = dj - dj_para;
     
-    Vector_2 rr_ij_j = pj - bij;
-    Vector_2 rr_ij_i = pi - bij;
-
-    Vector_2 DDij = Aij / lij * rr_ij_j; // ( pj - bij);
-    Vector_2 DDji = Aij / lij * rr_ij_i; // ( pi - bij);
-
-    FT r2_ij_j = rr_ij_j.squared_length();  // (these two are the same on Voronoi)
-    FT r2_ij_i = rr_ij_i.squared_length();
+ 
+    // FT r2_ij_j = rr_ij_j.squared_length();  // (these two are the same on Voronoi)
+    // FT r2_ij_i = rr_ij_i.squared_length();
     
-    // todo: maybe define I = Aij*Aij/12, to ease notation
-    Vector_2 MMij = Aij / lij * (
-				 ( r2_ij_j +  Aij*Aij / 4 ) * rr_ij_j
-				 - ( Aij*Aij / 12 ) * eij
-				 // i.e.  + ( Aij*Aij / 12 ) * eji
-				 );
+    Vector_2 MMij = - 2 * Aij / lij * (
+				       (di * r_ij_i ) * r_ij_j
+				       - ( Aij*Aij / 12 ) * di_perp
+				       );
 
-    Vector_2 MMji = Aij / lij * (
-				 ( r2_ij_i +  Aij*Aij / 4 ) * rr_ij_i
-				 + ( Aij*Aij / 12 ) * eij
+    Vector_2 MMji = - 2 * Aij / lij * (
+				       (dj * r_ij_j ) * r_ij_i
+				       - ( Aij*Aij / 12 ) * dj_perp
 				 );
-
 
     if( (i >= 0 ) && ( j >= 0) ) {
 
@@ -105,8 +106,14 @@ void linear::fill_matrices(void){
     if (i >= 0 ) {
       diag_dx[ i ] -= DDji.x();
       diag_dy[ i ] -= DDji.y();
-      diag_mx[ i ] -= MMji.x();
-      diag_my[ i ] -= MMji.y();
+
+      Vector_2 MMii =  2 * Aij / lij * (
+					(di * r_ij_i ) * r_ij_i
+					+ ( Aij*Aij / 12 ) * di_perp
+					);
+
+      diag_mx[ i ] += MMii.x();
+      diag_my[ i ] += MMii.y();
 
 //      di_m_x[ i ] -= MMij.x();
 //      di_m_y[ i ] -= MMij.y();
@@ -116,8 +123,14 @@ void linear::fill_matrices(void){
 
       diag_dx[ j ] -= DDij.x();
       diag_dy[ j ] -= DDij.y();
-      diag_mx[ j ] -= MMij.x();
-      diag_my[ j ] -= MMij.y();
+
+      Vector_2 MMjj =  2 * Aij / lij * (
+					(dj * r_ij_j ) * r_ij_j
+					+ ( Aij*Aij / 12 ) * dj_perp
+					);
+
+      diag_mx[ j ] -= MMjj.x();
+      diag_my[ j ] -= MMjj.y();
 
       //      di_d_x[ j ] -= DDji.x();
       //      di_d_y[ j ] -= DDji.y();
@@ -151,11 +164,11 @@ void linear::fill_matrices(void){
 
     if( idx < 0 ) continue;
 
-    FT vol = fv->vol();
+    FT voli = fv->vol();
     Point ri = fv->point().point();
     Point bi = fv->centroid.val();
 
-    Vector_2 dd = 2 * vol * ( bi - ri ) ;
+    Vector_2 dd = 2 * voli * voli * ( bi - ri ) ;
     diag_mx[ idx ] -= dd.x();
     diag_my[ idx ] -= dd.y();
 
@@ -257,25 +270,25 @@ void linear::fill_matrices(void){
 	  ddmm.push_back( triplet( i, j,  val ));
     }
   
- for (int k=0; k < DM.outerSize(); ++k)
-   for (SpMat::InnerIterator it(DM,k); it; ++it) {
-     int i = it.row();
-     int j = it.col();
+ // for (int k=0; k < DM.outerSize(); ++k)
+ //   for (SpMat::InnerIterator it(DM,k); it; ++it) {
+ //     int i = it.row();
+ //     int j = it.col();
 	  
-     FT val= it.value();
+ //     FT val= it.value();
  
-     ddmm.push_back( triplet( i, j + N ,  val ));
-   }
+ //     ddmm.push_back( triplet( i, j + N ,  val ));
+ //   }
 
- for (int k=0; k < MD.outerSize(); ++k)
-   for (SpMat::InnerIterator it(MD,k); it; ++it) {
-     int i = it.row();
-     int j = it.col();
+ // for (int k=0; k < MD.outerSize(); ++k)
+ //   for (SpMat::InnerIterator it(MD,k); it; ++it) {
+ //     int i = it.row();
+ //     int j = it.col();
 	  
-     FT val= it.value();
+ //     FT val= it.value();
  
-     ddmm.push_back( triplet( i + N , j,  val ));
-   }
+ //     ddmm.push_back( triplet( i + N , j,  val ));
+ //   }
 
   for (int k=0; k < MM.outerSize(); ++k)
     for (SpMat::InnerIterator it(MM,k); it; ++it) {

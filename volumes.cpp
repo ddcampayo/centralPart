@@ -190,7 +190,9 @@ void volumes(Triangulation& T) {
 
     totalV += area;
 
-    fv->I.set( moi( fv->point().point() ,  poly_vertices2  ) );
+    Vector_2 dd = area * ( c2 -  fv->point().point() ) ;
+
+    fv->I.set( dd.squared_length() );
     
   }
 
