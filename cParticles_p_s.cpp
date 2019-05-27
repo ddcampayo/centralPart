@@ -118,9 +118,11 @@ int main() {
       algebra.fill_matrices();
 
       algebra.ps_equation( dt );
-
       algebra.u_add_grad_ps( dt2 );
-      
+      // algebra.s_equation( dt );
+      // algebra.u_add_grad_s( dt2 );
+
+
       if( displ < disp_tol ) break;
 
 

@@ -38,17 +38,19 @@ void linear::ps_equation(const FT dt ) {
   VectorXd I0  = field_to_vctr( sfield_list::I0 ) ;
   VectorXd I   = field_to_vctr( sfield_list::I ) ;
 
-  VectorXd DI = I - I0 ;
+  VectorXd DI = I; // - I0 ;
 
   FT DI_sigma =  DI.array().square().sum() ;
   FT I_mean  =  I.array().square().sum() ;
 
+  int N = vol0.size(); 
+
   cout << " s field  "
        << " rel DI std dev: " << sqrt( DI_sigma / I_mean )
+       << " abs DI std dev: " << sqrt( DI_sigma  ) / FT(N)
        << endl;
 
-  int N = vol0.size(); 
-  
+
   VectorXd DvolDI( 2*N );
   DvolDI << Dvol , DI ;
 

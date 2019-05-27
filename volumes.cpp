@@ -7,40 +7,6 @@
 typedef vector<Point> vvP;
 
 
-// second moment of area wrt p -- Ix + Iy
-// https://en.wikipedia.org/wiki/Second_moment_of_area#Any_polygon
-FT moi( const Point& p , const vvP& vs ) {
-
-  FT mm = 0;
-  int N = vs.size();
-  for(int i=0 ; i < N ; i++ ) {
-    Vector_2 pi = vs[  i         ] - p ;
-    Vector_2 pj = vs[ (i+1 ) % N ] - p ;
-
-    FT xi= pi.x();
-    FT yi= pi.y();
-
-    FT xj= pj.x();
-    FT yj= pj.y();
-
-    // ugly.-
-    mm += std::fabs(
-		    (  xi * xi + yi * yi +
-		       xj * xj + yj * yj +
-		       xi * xj + yi * yj  ) *
-		    ( xi * yj - xj * yi ) / 12  );
-
-    // elegant.-
-    //    FT area =  ( xi * yj - xj * yi ) / 2 ;    
-    // mm += std::fabs(
-    // 		    ( pi.squared_length() +
-    // 		      pj.squared_length() +
-    // 		      pi * pj ) * area / 6  );
-  }
-
-  return mm;
-}
-
 // Compute Voronoi volumes (i.e. areas, in 2D)
 //
 //
@@ -193,7 +159,7 @@ void volumes(Triangulation& T) {
     Vector_2 dd = area * ( c2 -  fv->point().point() ) ;
 
     fv->I.set( dd.squared_length() );
-    
+
   }
 
   cout << "Volumes: total = " << totalV << " ; ";

@@ -26,10 +26,14 @@ void linear::s_equation(const FT dt ) {
   FT DI_sigma =  DI.array().square().sum() ;
   FT I_mean  =  I.array().square().sum() ;
 
+
+  int N = I0.size(); 
+
   cout << " s field  "
        << " rel DI std dev: " << sqrt( DI_sigma / I_mean )
+       << " abs DI std dev: " << sqrt( DI_sigma  ) / FT(N)
        << endl;
-
+  
   VectorXd Ds  =  MM_solver.solve( DI );
 
   VectorXd s0  = field_to_vctr( sfield_list::s ) ;

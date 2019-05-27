@@ -46,11 +46,11 @@ void linear::fill_matrices(void){
     Point pj = vj->point().point();
 
     Vector_2 eij = pj - pi;
-    
-    FT lij = std::sqrt( eij.squared_length() );
+
+    FT l2ij =  eij.squared_length() ;
+    FT lij = std::sqrt( l2ij );
     
     Point bij = CGAL::midpoint( Vor_segment->source() , Vor_segment->target() );
-
 
     FT voli = vi->vol();
     FT volj = vj->vol();
@@ -67,24 +67,23 @@ void linear::fill_matrices(void){
     Vector_2 di = ( bi - pi ) * voli ;
     Vector_2 dj = ( bj - pj ) * volj ;
 
-    Vector_2 di_para = ( (di * eij) / lij*lij ) * eij ;
-    Vector_2 di_perp = di - di_para;
+    Vector_2 di_perp = ( (di * eij) / l2ij ) * eij ;
+    Vector_2 di_para = di - di_perp;
 
-    Vector_2 dj_para = ( (dj * eij) / lij*lij ) * eij ;
-    Vector_2 dj_perp = dj - dj_para;
-    
+    Vector_2 dj_perp = ( (dj * eij) / l2ij ) * eij ;
+    Vector_2 dj_para = dj - dj_perp;
  
     // FT r2_ij_j = rr_ij_j.squared_length();  // (these two are the same on Voronoi)
     // FT r2_ij_i = rr_ij_i.squared_length();
     
-    Vector_2 MMij = - 2 * Aij / lij * (
+    Vector_2 MMij =  2 * Aij / lij * (
 				       (di * r_ij_i ) * r_ij_j
-				       - ( Aij*Aij / 12 ) * di_perp
+				       + ( Aij*Aij / 12 ) * di_para
 				       );
 
-    Vector_2 MMji = - 2 * Aij / lij * (
-				       (dj * r_ij_j ) * r_ij_i
-				       - ( Aij*Aij / 12 ) * dj_perp
+    Vector_2 MMji =  2 * Aij / lij * (
+				       (dj * r_ij_i ) * r_ij_i
+				       + ( Aij*Aij / 12 ) * dj_para
 				 );
 
     if( (i >= 0 ) && ( j >= 0) ) {
@@ -107,10 +106,11 @@ void linear::fill_matrices(void){
       diag_dx[ i ] -= DDji.x();
       diag_dy[ i ] -= DDji.y();
 
-      Vector_2 MMii =  2 * Aij / lij * (
-					(di * r_ij_i ) * r_ij_i
-					+ ( Aij*Aij / 12 ) * di_perp
-					);
+      //      Vector_2 MMii = - MMij;
+      Vector_2 MMii = 2 * Aij / lij * (
+				       (di * r_ij_i ) * r_ij_i
+				       + ( Aij*Aij / 12 ) * di_para
+				       );
 
       diag_mx[ i ] += MMii.x();
       diag_my[ i ] += MMii.y();
@@ -124,13 +124,15 @@ void linear::fill_matrices(void){
       diag_dx[ j ] -= DDij.x();
       diag_dy[ j ] -= DDij.y();
 
-      Vector_2 MMjj =  2 * Aij / lij * (
-					(dj * r_ij_j ) * r_ij_j
-					+ ( Aij*Aij / 12 ) * dj_perp
-					);
+      //      Vector_2 MMjj = - MMji;
 
-      diag_mx[ j ] -= MMjj.x();
-      diag_my[ j ] -= MMjj.y();
+      Vector_2 MMjj =  2 * Aij / lij * (
+      					(dj * r_ij_j ) * r_ij_j
+      					+ ( Aij*Aij / 12 ) * dj_para
+      					);
+
+      diag_mx[ j ] += MMjj.x();
+      diag_my[ j ] += MMjj.y();
 
       //      di_d_x[ j ] -= DDji.x();
       //      di_d_y[ j ] -= DDji.y();
