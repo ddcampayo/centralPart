@@ -76,13 +76,13 @@ void linear::fill_matrices(void){
     // FT r2_ij_j = rr_ij_j.squared_length();  // (these two are the same on Voronoi)
     // FT r2_ij_i = rr_ij_i.squared_length();
     
-    Vector_2 MMij =  2 * Aij / lij * (
+    Vector_2 MMij =  -2 * Aij / lij * (
 				       (di * r_ij_i ) * r_ij_j
 				       + ( Aij*Aij / 12 ) * di_para
 				       );
 
-    Vector_2 MMji =  2 * Aij / lij * (
-				       (dj * r_ij_i ) * r_ij_i
+    Vector_2 MMji =  -2 * Aij / lij * (
+				       (dj * r_ij_j ) * r_ij_i
 				       + ( Aij*Aij / 12 ) * dj_para
 				 );
 
