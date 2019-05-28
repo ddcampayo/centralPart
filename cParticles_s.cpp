@@ -31,7 +31,7 @@ int main() {
 
   cout << "Creating point cloud" << endl;
 
-  //  simu.do_perturb(0.45);
+  simu.do_perturb(0.45);
   create( T , 1.0 );
   number( T );
 
@@ -51,7 +51,7 @@ int main() {
     FT dd = lloyds( T ) ;
 
     cout << " init loop , iter " << init_iter << " dd = " << dd << endl;
-    if( dd < init_tol2) break;
+   if( dd < init_tol2) break;
 
   }
 
@@ -116,10 +116,10 @@ int main() {
 
       algebra.fill_matrices();
 
-      algebra.ps_equation( dt );
-      algebra.u_add_grad_ps( dt2 );
-      // algebra.s_equation( dt );
-      // algebra.u_add_grad_s( dt2 );
+      // algebra.ps_equation( dt );
+      // algebra.u_add_grad_ps( dt2 );
+      algebra.s_equation( dt );
+      algebra.u_add_grad_s( dt2 );
 
       if( displ < disp_tol ) break;
 
@@ -135,7 +135,7 @@ int main() {
 
     // half-step:
     //    update_full_vel( T );
-    algebra.u_add_grad_ps( dt );
+    algebra.u_add_grad_s( dt );
 
     draw( T , particle_file     );
     draw_diagram( T , diagram_file );

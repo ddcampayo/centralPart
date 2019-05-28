@@ -43,11 +43,16 @@ void linear::ps_equation(const FT dt ) {
   FT DI_sigma =  DI.array().square().sum() ;
   FT I_mean  =  I.array().square().sum() ;
 
-  int N = vol0.size(); 
+  VectorXd DD   = I.array() / vol.array();
 
+  int N = vol.size(); 
+
+  FT DD_st =  DD.sum()/ FT(N);  
+  
   cout << " s field  "
        << " rel DI std dev: " << sqrt( DI_sigma / I_mean )
        << " abs DI std dev: " << sqrt( DI_sigma  ) / FT(N)
+       << " mean dev from centroid: " << sqrt( DD_st  )
        << endl;
 
 

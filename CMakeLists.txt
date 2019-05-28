@@ -73,7 +73,8 @@ add_executable( cPart
 		fields.cpp
 		lloyds.cpp
 # choice of main file:
-		cParticles_p_s.cpp
+#		cParticles_p_s.cpp
+		cParticles_s.cpp
 )
 
 add_to_cached_list( CGAL_EXECUTABLE_TARGETS pPart )

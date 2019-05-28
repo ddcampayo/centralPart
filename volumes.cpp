@@ -117,7 +117,6 @@ void volumes(Triangulation& T) {
       ++edge;
     } while ( edge != first);
 
-
     int NN = poly_vertices.size();
     if( NN == 0 ) continue;
 

@@ -10,35 +10,39 @@
 void linear::s_equation(const FT dt ) {
 
   cout << "Solving s equation " << endl;
-
+  
   //  fill_Delta_DD(); // This may be important -- or not
 
   FT ddt = dt;
   if( dt < 1e-10 ) ddt = 1;  // for debugging, mainly
 
-  //  volumes( T );
-  
+  VectorXd vol   = field_to_vctr( sfield_list::vol ) ;
+
   VectorXd I0  = field_to_vctr( sfield_list::I0 ) ;
   VectorXd I   = field_to_vctr( sfield_list::I ) ;
 
-  VectorXd DI = I - I0 ;
+  VectorXd DI = I; // - I0 ;
 
   FT DI_sigma =  DI.array().square().sum() ;
   FT I_mean  =  I.array().square().sum() ;
 
+  VectorXd DD   = I.array() / vol.array();
 
-  int N = I0.size(); 
+  int N = vol.size(); 
 
+  FT DD_st =  DD.sum()/ FT(N);  
+  
   cout << " s field  "
        << " rel DI std dev: " << sqrt( DI_sigma / I_mean )
        << " abs DI std dev: " << sqrt( DI_sigma  ) / FT(N)
+       << " mean dev from centroid: " << sqrt( DD_st  ) / FT(N)
        << endl;
-  
+
   VectorXd Ds  =  MM_solver.solve( DI );
 
-  VectorXd s0  = field_to_vctr( sfield_list::s ) ;
+  //  VectorXd s0  = field_to_vctr( sfield_list::s ) ;
 
-  vctr_to_field( s0 + Ds / ( ddt * ddt) , sfield_list::s  ) ;
+  vctr_to_field( 0.1*Ds / ( ddt * ddt) , sfield_list::s  ) ;
 
   return;
 }
