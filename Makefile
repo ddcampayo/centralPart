@@ -123,32 +123,32 @@ cPart/fast:
 	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/build
 .PHONY : cPart/fast
 
-cParticles_s.o: cParticles_s.cpp.o
+cParticles_p_s.o: cParticles_p_s.cpp.o
 
-.PHONY : cParticles_s.o
+.PHONY : cParticles_p_s.o
 
 # target to build an object file
-cParticles_s.cpp.o:
-	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/cParticles_s.cpp.o
-.PHONY : cParticles_s.cpp.o
+cParticles_p_s.cpp.o:
+	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/cParticles_p_s.cpp.o
+.PHONY : cParticles_p_s.cpp.o
 
-cParticles_s.i: cParticles_s.cpp.i
+cParticles_p_s.i: cParticles_p_s.cpp.i
 
-.PHONY : cParticles_s.i
+.PHONY : cParticles_p_s.i
 
 # target to preprocess a source file
-cParticles_s.cpp.i:
-	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/cParticles_s.cpp.i
-.PHONY : cParticles_s.cpp.i
+cParticles_p_s.cpp.i:
+	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/cParticles_p_s.cpp.i
+.PHONY : cParticles_p_s.cpp.i
 
-cParticles_s.s: cParticles_s.cpp.s
+cParticles_p_s.s: cParticles_p_s.cpp.s
 
-.PHONY : cParticles_s.s
+.PHONY : cParticles_p_s.s
 
 # target to generate assembly for a file
-cParticles_s.cpp.s:
-	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/cParticles_s.cpp.s
-.PHONY : cParticles_s.cpp.s
+cParticles_p_s.cpp.s:
+	$(MAKE) -f CMakeFiles/cPart.dir/build.make CMakeFiles/cPart.dir/cParticles_p_s.cpp.s
+.PHONY : cParticles_p_s.cpp.s
 
 create.o: create.cpp.o
 
@@ -537,9 +537,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... cPart"
 	@echo "... edit_cache"
-	@echo "... cParticles_s.o"
-	@echo "... cParticles_s.i"
-	@echo "... cParticles_s.s"
+	@echo "... cParticles_p_s.o"
+	@echo "... cParticles_p_s.i"
+	@echo "... cParticles_p_s.s"
 	@echo "... create.o"
 	@echo "... create.i"
 	@echo "... create.s"

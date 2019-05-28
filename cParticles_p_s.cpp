@@ -123,7 +123,6 @@ int main() {
 
       if( displ < disp_tol ) break;
 
-
     }
 
     //    displ = move( T , dt , d0 );
